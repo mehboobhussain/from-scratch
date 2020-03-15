@@ -1,11 +1,6 @@
-# -*- coding: utf-8 -*-
-"""
-Spyder Editor
-
-This is a temporary script file.
-"""
-from functools import reduce
 import math
+from functools import reduce
+
 
 def vector_add(v, w):
    """adds corresponding elements"""
@@ -29,7 +24,14 @@ def vector_mean(vectors):
     n = len(vectors)
     return scalar_multiply(1/n, vector_sum(vectors))
 
-def vector_dot(v, w):    return sum(vi*wi for vi, wi in zip(v, w))
+def vector_dot(v, w):    
+    ''' multiplies each element of first vector with the second vector 
+        and returns the sum 
+        parameter
+        x: first vector
+        y: second vector
+        '''
+    return sum(vi*wi for vi, wi in zip(v, w))
 
 def sum_of_squares(v):
     return vector_dot(v, v)
@@ -43,13 +45,20 @@ def squared_distnace(v, w):
 def distance (v, w):
     return magnitude(vector_subtract(v, w))
 
-  
+def shape(A):
+  num_rows = len(A)
+  num_cols = len(A[0]) if A else 0
+  return num_rows, num_cols
 
-score  = [10, 20, 30]
-age    = [3, 2, 1]
-salary = [1000, 1050, 2000]
+def get_rows (A, i):
+  return A[i]
 
-print (vector_mean([age, scalar_multiply(5, score)]))
-print (vector_mean([score, age, salary]))
+def get_cols (A, j):
+  return [x[j] for x in A]
 
-print (distance(age, score))
+def one_diagonal (i,j):
+  return 1 if i == j else 0
+
+def make_matrix (rows, cols, fn):
+  return [ [fn(i,j) for i in range(cols)] 
+          for j in range(rows)]
