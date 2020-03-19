@@ -1,6 +1,8 @@
 import math
 from functools import reduce
+from typing import List
 
+Vector = List[float]
 
 def vector_add(v, w):
    """adds corresponding elements"""
